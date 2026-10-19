@@ -12,16 +12,16 @@ SolidJS 2 相关的 agent skill 集合。
 
 ```bash
 # 查看仓库里有哪些 skill
-npx skills add <owner>/<repo> --list
+npx skills add thinke5/solidjs2-skill --list
 
 # 安装全部到用户目录
-npx skills add <owner>/<repo> --skill '*' -g
+npx skills add thinke5/solidjs2-skill --skill '*' -g
 
 # 只装一个
-npx skills add <owner>/<repo> --skill react-to-solidjs2 -g
+npx skills add thinke5/solidjs2-skill --skill react-to-solidjs2 -g
 
 # 直接指向单个 skill 目录
-npx skills add https://github.com/<owner>/<repo>/tree/main/skills/react-to-solidjs2
+npx skills add https://github.com/thinke5/solidjs2-skill/tree/main/skills/react-to-solidjs2
 ```
 
 - `-g` 装到用户目录，跨项目可用；省略则装到当前项目的 agent skills 目录。
@@ -31,7 +31,7 @@ npx skills add https://github.com/<owner>/<repo>/tree/main/skills/react-to-solid
 也可不安装，直接生成提示词：
 
 ```bash
-npx skills use <owner>/<repo>@solidjs2-best-practices | claude
+npx skills use thinke5/solidjs2-skill@solidjs2-best-practices | claude
 ```
 
 **方式二：手动复制**
@@ -39,7 +39,7 @@ npx skills use <owner>/<repo>@solidjs2-best-practices | claude
 克隆或下载本仓库，把 skill 目录复制到 agent 的 skills 目录。以 CodeBuddy 为例，用户级目录是 `~/.codebuddy/skills/`；其他 agent 换成各自的 skills 目录。
 
 ```bash
-git clone <仓库地址> solidjs2-skill
+git clone https://github.com/thinke5/solidjs2-skill.git solidjs2-skill
 cp -r solidjs2-skill/skills/react-to-solidjs2 ~/.codebuddy/skills/
 cp -r solidjs2-skill/skills/solidjs2-best-practices ~/.codebuddy/skills/
 ```
