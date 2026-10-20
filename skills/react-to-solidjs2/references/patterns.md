@@ -266,16 +266,23 @@ function Profile(props) {
 
 ```tsx
 // React
-<button className="btn" style={{ backgroundColor: color }}>
+import { clsx } from "clsx";
+
+<button className={clsx("btn", className, { active: selected })} style={{ backgroundColor: color }}>
   Save
 </button>
 ```
 
 ```tsx
 // Solid
-<button class={["btn", { active: selected() }]} style={{ "background-color": color() }}>
+<button class={["btn", props.className, { active: selected() }]} style={{ "background-color": color() }}>
   Save
 </button>
 ```
 
-`class` 支持条件对象与嵌套数组；style 用 CSS 属性名，数值需自行加单位。
+原生 DOM 的类名合并优先使用 `class`，替换可由它覆盖的 `clsx` / `classnames` 调用。
+`class` 支持字符串、条件对象和嵌套数组；对象中值为真值的键会加入类名，键可包含空格分隔的多个类名。
+共享类名可由函数或 memo 返回数组，再写 `class={[classes(), { disabled: disabled() }]}`，无需先转成字符串。
+
+仅在无剩余用途时删除 `clsx` / `classnames` 导入。外部组件或工具需要字符串时，不直接传数组或对象。
+style 用 CSS 属性名，数值需自行加单位。

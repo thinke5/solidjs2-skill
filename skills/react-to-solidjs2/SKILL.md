@@ -29,7 +29,7 @@ Solid 组件只在挂载时执行一次，之后由 signals 通知读取它们�
 3. **派生**：删掉“signal + effect 同步”的写法，改为普通函数或 `createMemo`。
 4. **副作用**：`useEffect` 按职责拆解，多数情况应删除而非翻译。
 5. **结构**：响应式列表改 `For`；需要 fallback、值收窄或身份控制时用 `Show`。
-6. **属性与事件**：`className` → `class`，`onChange` → `onInput`。
+6. **属性与事件**：原生 DOM 的 `className` → `class`，`onChange` → `onInput`；DOM 类名合并优先用 `class` 数组与条件对象替代 `clsx` / `classnames`，见 `references/patterns.md`。
 
 ## 关键决策
 
@@ -74,7 +74,7 @@ React 的 Suspense / ErrorBoundary / SuspenseList 对应 Solid 的 `Loading` / `
 | 文件 | 内容 |
 | --- | --- |
 | `references/api-mapping.md` | React API 与 SolidJS 2 API 逐项对照，含组件与 JSX 属性 |
-| `references/patterns.md` | 常见场景的改前/改后代码：状态、派生、副作用、列表、表单、ref、context、异步 |
+| `references/patterns.md` | 常见场景的改前/改后代码：状态、派生、副作用、列表、表单、ref、context、异步、类名合并 |
 | `references/migration-plan.md` | 项目级增量迁移顺序、边界划分与验收清单 |
 | `references/solid-1-vs-2.md` | Solid 1.x 与 2.0 的差异，用于识别旧文章与旧代码写法 |
 
@@ -87,4 +87,5 @@ React 的 Suspense / ErrorBoundary / SuspenseList 对应 Solid 的 `Loading` / `
 - 列表使用 `For` 的 keying 模式，或 `Repeat` 的区间渲染。
 - 副作用只用于驱动 Solid 之外的外部系统。
 - 异步读取有对应的 `Loading` 与 `Errored` 边界，且没有多余瀑布。
+- 可由原生 `class` 覆盖的 DOM 类名合并已替换；无剩余用途的 `clsx` / `classnames` 导入已删除。
 - 没有 React 组件或 React 运行时对象进入 Solid 组件树。

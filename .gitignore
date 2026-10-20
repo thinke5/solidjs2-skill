@@ -4,4 +4,5 @@ node_modules/
 
 # 参考源码，不提交
 tmp/
-tmp/
+demo/
+.codebuddy/
